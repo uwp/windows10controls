@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="Windows10Controls.MainPage"
+    x:Class="Windows10Controls.Views.MainView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Windows10Controls"

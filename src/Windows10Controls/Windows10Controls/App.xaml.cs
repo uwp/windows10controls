@@ -1,26 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
+using System.Diagnostics;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Microsoft.ApplicationInsights;
+using Windows10Controls.Views;
 
 namespace Windows10Controls
 {
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
-    sealed partial class App : Application
+    sealed partial class App
     {
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -28,6 +21,9 @@ namespace Windows10Controls
         /// </summary>
         public App()
         {
+            WindowsAppInitializer.InitializeAsync(
+                WindowsCollectors.Metadata |
+                WindowsCollectors.Session);
             this.InitializeComponent();
             this.Suspending += OnSuspending;
         }
@@ -41,7 +37,7 @@ namespace Windows10Controls
         {
 
 #if DEBUG
-            if (System.Diagnostics.Debugger.IsAttached)
+            if (Debugger.IsAttached)
             {
                 this.DebugSettings.EnableFrameRateCounter = true;
             }
@@ -72,7 +68,7 @@ namespace Windows10Controls
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                rootFrame.Navigate(typeof(MainView), e.Arguments);
             }
             // Ensure the current window is active
             Window.Current.Activate();
