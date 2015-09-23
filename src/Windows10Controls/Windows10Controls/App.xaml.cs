@@ -60,7 +60,7 @@ namespace Windows10Controls
                 }
 
                 // Place the frame in the current Window
-                Window.Current.Content = rootFrame;
+                Window.Current.Content = new Shell(rootFrame);
             }
 
             if (rootFrame.Content == null)
